@@ -1,6 +1,6 @@
-package dev.kanety.solaria.potion.mixin;
+package dev.kanety.solariacarpet.mixin;
 
-import dev.kanety.solaria.potion.PotionDupeConfig;
+import dev.kanety.solariacarpet.PotionDupeRules;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -28,14 +28,14 @@ public abstract class ThrowableProjectileMixin extends Projectile {
      * dimension while its copy carries on in the new one.
      */
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
-    private void potiondupe$legacyTick(CallbackInfo ci) {
-        if (!PotionDupeConfig.legacyPhysics(this)) {
+    private void solariacarpet$legacyTick(CallbackInfo ci) {
+        if (!PotionDupeRules.legacyPhysics(this)) {
             return;
         }
         ci.cancel();
         super.tick();
         HitResult hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
-        if (hitResult.getType() != HitResult.Type.MISS && potiondupe$canHit()) {
+        if (hitResult.getType() != HitResult.Type.MISS && solariacarpet$canHit()) {
             this.hitTargetOrDeflectSelf(hitResult);
         }
 
@@ -50,16 +50,16 @@ public abstract class ThrowableProjectileMixin extends Projectile {
         this.setPos(x, y, z);
     }
 
-    private boolean potiondupe$canHit() {
+    private boolean solariacarpet$canHit() {
         return this.isAlive()
-            || this.getRemovalReason() == Entity.RemovalReason.CHANGED_DIMENSION && PotionDupeConfig.hitAfterPortal(this);
+            || this.getRemovalReason() == Entity.RemovalReason.CHANGED_DIMENSION && PotionDupeRules.hitAfterPortal(this);
     }
 
     /** With legacyPhysics off, still let the projectile hit after it went through a portal this tick. */
     @Redirect(method = "tick", at = @At(value = "INVOKE",
         target = "Lnet/minecraft/world/entity/projectile/ThrowableProjectile;isAlive()Z"))
-    private boolean potiondupe$hitAfterPortal(ThrowableProjectile self) {
+    private boolean solariacarpet$hitAfterPortal(ThrowableProjectile self) {
         return self.isAlive()
-            || self.getRemovalReason() == Entity.RemovalReason.CHANGED_DIMENSION && PotionDupeConfig.hitAfterPortal(self);
+            || self.getRemovalReason() == Entity.RemovalReason.CHANGED_DIMENSION && PotionDupeRules.hitAfterPortal(self);
     }
 }

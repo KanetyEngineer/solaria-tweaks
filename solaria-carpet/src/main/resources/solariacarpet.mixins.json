@@ -1,13 +1,14 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "dev.kanety.solaria.potion.mixin",
+  "package": "dev.kanety.solariacarpet.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "HoneyBlockMixin",
     "ProjectileMixin",
     "ProjectileUtilMixin",
-    "ThrowableProjectileMixin"
+    "ThrowableProjectileMixin",
+    "ThreadedLevelLightEngineMixin"
   ],
   "injectors": { "defaultRequire": 1 }
 }

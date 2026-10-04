@@ -1,6 +1,6 @@
-package dev.kanety.solaria.potion.mixin;
+package dev.kanety.solariacarpet.mixin;
 
-import dev.kanety.solaria.potion.PotionDupeConfig;
+import dev.kanety.solariacarpet.PotionDupeRules;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
@@ -21,9 +21,9 @@ public abstract class HoneyBlockMixin {
      * already run the 1.21.1 tick order.
      */
     @Inject(method = "entityInside", at = @At("HEAD"), cancellable = true)
-    private void potiondupe$legacySlide(BlockState state, Level level, BlockPos pos, Entity entity,
+    private void solariacarpet$legacySlide(BlockState state, Level level, BlockPos pos, Entity entity,
                                         InsideBlockEffectApplier applier, boolean intersects, CallbackInfo ci) {
-        if (!PotionDupeConfig.legacyPhysics(entity)) {
+        if (!PotionDupeRules.legacyPhysics(entity)) {
             return;
         }
         ci.cancel();
