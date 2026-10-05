@@ -1,8 +1,14 @@
 Solaria SMP（Minecraft 1.21.11 / Fabric）向けの補助 MOD です。
 
 ## 添付ファイル
-- **solaria-tweaks-1.2.0+mc1.21.11.jar**: サーバーとクライアントの両方に入れます（Fabric API が必要）
-- **solaria-carpet-1.0.3+mc1.21.11.jar**: サーバーにだけ入れます（fabric-carpet が必要）
+- **solaria-tweaks-1.3.0+mc1.21.11.jar**: サーバーとクライアントの両方に入れます（Fabric API が必要）
+- **solaria-carpet-1.1.0+mc1.21.11.jar**: サーバーにだけ入れます（fabric-carpet が必要）
+
+## 1.3.0 の変更点
+- **共有地点を一覧から選んで登録**: サーバーの共有地点が勝手に地図に出るのをやめ、「サーバー地点」の一覧から好きなものを「登録」（または「まとめて登録」）して自分の Xaero の地点に入れる方式にしました。登録済みの地点は「登録済み」と出ます。今までどおり全部を地図に出したい場合は、一覧右下の「地図に全部出す」を ON にしてください
+- **建築計画 HUD の表示切り替えホットキー**: MaLiLib の設定画面（MaLiLib がなければバニラの操作設定）で割り当てられます（初期値なし）
+- **材料・区画の「無視」ボタン**: 建築計画の材料と区画の各行で、足場や不要なブロック、作らない区画を進捗と割り当ての対象から外せます（「戻す」で元に戻ります。作成者と OP だけ）。コマンドは `/bp ignore`・`/bp unignore`・`/bp areaignore`・`/bp areaunignore`
+- **虚空取引の復活（Solaria Carpet 1.1.0）**: `/carpet setDefault voidTrading true` で、村人がアンロードされたりポータルをくぐったりしても取引画面が閉じなくなります。その間の取引は村人に保存されないので、取引がロックされず、割引もリセットされません
 
 ## 1.2.0 の変更点
 - **フィルター詰め**: ホッパーなどを開くと右側にボタンが出ます。仕分け機のフィルター（1枠目に手に持ったアイテム18個、残りに埋め物1個ずつ）、覚えた配置、Litematica の設計図どおりの中身を、手持ちから自動で詰めます。個数と埋め物は `/filterfill` か MaLiLib の設定画面で変えられます
@@ -20,4 +26,4 @@ Solaria SMP（Minecraft 1.21.11 / Fabric）向けの補助 MOD です。
 
 ---
 
-Helper mods for the Solaria SMP (Minecraft 1.21.11, Fabric). Solaria Tweaks (server and clients, needs Fabric API): shared Xaero waypoints, stat leaderboards with server-wide totals (`/lb server`), Syncmatica build plans, an observer misplacement guard that also stops Litematica Easy Place, one-click sorter filter filling for hoppers, and an optional MaLiLib config screen. Solaria Carpet (server only, needs fabric-carpet): Carpet rules `potionDupe` (1.21.1 potion duplication) and `lightSuppression` (makes old light suppressors work again, with a queue cap so chunk loads never hang the server).
+Helper mods for the Solaria SMP (Minecraft 1.21.11, Fabric). Solaria Tweaks (server and clients, needs Fabric API): shared Xaero waypoints you pick from a list, stat leaderboards with server-wide totals (`/lb server`), Syncmatica build plans, an observer misplacement guard that also stops Litematica Easy Place, one-click sorter filter filling for hoppers, and an optional MaLiLib config screen. Solaria Carpet (server only, needs fabric-carpet): Carpet rules `potionDupe` (1.21.1 potion duplication), `voidTrading` (pre-1.20.5 void trading) and `lightSuppression` (makes old light suppressors work again, with a queue cap so chunk loads never hang the server).
