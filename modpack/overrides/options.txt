@@ -62,7 +62,7 @@ damageTiltStrength:1.0
 highContrast:false
 highContrastBlockOutline:false
 narratorHotkey:true
-resourcePacks:["vanilla","chesttracker:darkmode_texture","continuity:default","continuity:glass_pane_culling_fix","file/yuramoon-debris-pack.zip","file/yuramoon-totem-pack.zip"]
+resourcePacks:["vanilla","chesttracker:darkmode_texture","continuity:default","continuity:glass_pane_culling_fix","file/yuramoon-pack.zip"]
 incompatibleResourcePacks:[]
 lastServer:
 lang:ja_jp
