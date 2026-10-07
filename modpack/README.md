@@ -23,4 +23,4 @@ Prism のインスタンスを書き出したフォルダから作ります（�
 python modpack/make_from_instance.py "<インスタンスのフォルダ>" modpack <バージョン>
 ```
 
-Actions の `modpack` ワークフローを `version` 付きで実行すると、`Solaria-SMP-<version>.mrpack` を作ってリリース `modpack-v<version>` に付けます。
+main に入ると Actions の `modpack` ワークフローが `Solaria-SMP-<versionId>.mrpack` を作り、まだ無ければリリース `modpack-v<versionId>` を作ります（新しく出すときは modrinth.index.json の versionId を上げる）。

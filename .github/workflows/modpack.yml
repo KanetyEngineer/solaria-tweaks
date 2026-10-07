@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Modpack version to release as modpack-v<version> (e.g. 1.0.0). Leave empty to only build.'
+        description: 'Modpack version to release as modpack-v<version> (e.g. 1.0.0). Empty: the versionId in modrinth.index.json, built only.'
         required: false
         default: ''
 permissions:
@@ -35,9 +35,11 @@ jobs:
           name: solaria-smp-mrpack
           path: Solaria-SMP-*.mrpack
       - name: Release
-        if: inputs.version != ''
+        if: github.event_name == 'push' || inputs.version != ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          # a push to main releases the version in modrinth.index.json once; bump versionId for a new release
+          if gh release view "modpack-v$VER" >/dev/null 2>&1; then echo "modpack-v$VER already released"; exit 0; fi
           gh release create "modpack-v$VER" "Solaria-SMP-$VER.mrpack" --target "$GITHUB_SHA" \
             --title "Solaria SMP 起動構成 $VER (.mrpack)" --notes-file modpack/README.md --latest=false
