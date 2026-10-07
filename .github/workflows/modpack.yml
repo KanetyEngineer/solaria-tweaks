@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
     paths: ['modpack/**', '.github/workflows/modpack.yml']
+  pull_request:
+    paths: ['modpack/**', '.github/workflows/modpack.yml']
   workflow_dispatch:
     inputs:
       version:
