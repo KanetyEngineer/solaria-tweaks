@@ -1,0 +1,43 @@
+name: modpack
+on:
+  push:
+    branches: [main]
+    paths: ['modpack/**', '.github/workflows/modpack.yml']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Modpack version to release as modpack-v<version> (e.g. 1.0.0). Leave empty to only build.'
+        required: false
+        default: ''
+permissions:
+  contents: write
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check index
+        run: python3 -c "import json; d=json.load(open('modpack/modrinth.index.json')); print(d['name'], d['versionId'], len(d['files']), 'files')"
+      - name: Build .mrpack
+        working-directory: modpack
+        run: |
+          VER="${{ inputs.version }}"
+          [ -n "$VER" ] || VER=$(python3 -c "import json; print(json.load(open('modrinth.index.json'))['versionId'])")
+          python3 - "$VER" <<'PY'
+          import json, sys
+          d = json.load(open('modrinth.index.json')); d['versionId'] = sys.argv[1]
+          json.dump(d, open('modrinth.index.json', 'w'), indent=2, ensure_ascii=False)
+          PY
+          zip -qrX "../Solaria-SMP-$VER.mrpack" modrinth.index.json overrides
+          echo "VER=$VER" >> "$GITHUB_ENV"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: solaria-smp-mrpack
+          path: Solaria-SMP-*.mrpack
+      - name: Release
+        if: inputs.version != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "modpack-v$VER" "Solaria-SMP-$VER.mrpack" --target "$GITHUB_SHA" \
+            --title "Solaria SMP 起動構成 $VER (.mrpack)" --notes-file modpack/README.md --latest=false

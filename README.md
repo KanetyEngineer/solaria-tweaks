@@ -4,6 +4,8 @@ Solaria SMP（Minecraft 1.21.11 / Fabric）向けの補助 MOD。クライアン
 前の「Solaria Tools」の後継です（Solaria Tools が入っていると起動時に止まるので外してください）。
 ポーション複製と光抑制は 1.1.0 から Carpet のルールとして別 MOD「Solaria Carpet」（このリポジトリの [`solaria-carpet/`](solaria-carpet/)、リリースに jar を添付）に移りました。
 
+Solaria SMP のクライアント構成一式（Prism Launcher などでそのまま読める .mrpack）は [`modpack/`](modpack/) と Releases の `modpack-v*` にあります。
+
 ## できること
 
 ### 1. サーバー共有の地点（Xaero's Minimap / World Map）
