@@ -1,8 +1,17 @@
 Solaria SMP（Minecraft 1.21.11 / Fabric）向けの補助 MOD です。
 
 ## 添付ファイル
-- **solaria-tweaks-1.4.0+mc1.21.11.jar**: サーバーとクライアントの両方に入れます（Fabric API が必要）
+- **solaria-tweaks-1.6.0+mc1.21.11.jar**: サーバーとクライアントの両方に入れます（Fabric API が必要）
 - **solaria-carpet-1.2.0+mc1.21.11.jar**: サーバーにだけ入れます（fabric-carpet が必要）
+
+## 1.6.0 の変更点
+- **フィルター詰めのボタン**: 作業台・石切台・製図台・金床・砥石・機織り機・エンチャント台・ビーコン・書見台・村人の取引画面・エンダーチェストでは出さないようにしました。ラージチェストでも出るように直しました。ボタンは画面の右端に移し、Redstone Tweaks などのリソースパックの表示と重ならないようにしました。位置は MaLiLib の設定（`filterFillOffsetX` / `filterFillOffsetY`）でずらせます。「フィルター」ボタンはホッパーだけに出ます
+- **オブザーバー警告**: 「設計図の範囲だけ」（旧「設計図と違うものだけ」）で、設計図にあるオブザーバーの前にブロックを置くときは、設計図どおりのブロックでも止めるようにしました
+- **建築計画**: 材料の表示に「担当している区画」（自分が担当する区画でまだ置いていない材料と数）を足しました。区画の分け方の初期値をサブリージョンにしました。ほかの人が担当している材料・区画を変えられるのは OP だけにしました（作成者の「自動で割り当てる」は、OP でなければ担当のいないものだけを割り当てます）
+- **サイドバーの順位表を削除**しました。`/lb top` と `/lb server` のチャット表示は残っています
+
+## 1.5.0 の変更点
+- **配信用の OBS オーバーレイ**: サーバー全体の採掘数などを OBS のブラウザソースに出す小さな Web サーバーを足しました（`/overlay on`、既定ポート 8770。README の 7 を参照）
 
 ## 1.4.0 の変更点
 - **採掘数のサイドバーを最初は出さないようにしました**: 今までは全員の画面に採掘数の順位表が出ていましたが、`/lb show <項目>` で選んだ人にだけ出るようになりました。前の版のサーバーで `mined` が既定になっていた場合も、自動で off に切り替わります（`/lb default <項目>` で戻せます）
@@ -30,4 +39,4 @@ Solaria SMP（Minecraft 1.21.11 / Fabric）向けの補助 MOD です。
 
 ---
 
-Helper mods for the Solaria SMP (Minecraft 1.21.11, Fabric). Solaria Tweaks (server and clients, needs Fabric API): shared Xaero waypoints you pick from a list, stat leaderboards with server-wide totals (`/lb server`), Syncmatica build plans, an observer misplacement guard that also stops Litematica Easy Place, one-click sorter filter filling for hoppers, and an optional MaLiLib config screen. Solaria Carpet (server only, needs fabric-carpet): Carpet rules `potionDupe` (1.21.1 potion duplication), `voidTrading` (pre-1.20.5 void trading) and `lightSuppression` (makes old light suppressors work again, with a queue cap so chunk loads never hang the server).
+Helper mods for the Solaria SMP (Minecraft 1.21.11, Fabric). Solaria Tweaks (server and clients, needs Fabric API): shared Xaero waypoints you pick from a list, stat rankings with server-wide totals (`/lb server`) and an OBS overlay, Syncmatica build plans, an observer misplacement guard that also stops Litematica Easy Place, one-click sorter filter filling for hoppers, and an optional MaLiLib config screen. Solaria Carpet (server only, needs fabric-carpet): Carpet rules `potionDupe` (1.21.1 potion duplication), `voidTrading` (pre-1.20.5 void trading) and `lightSuppression` (makes old light suppressors work again, with a queue cap so chunk loads never hang the server).
